@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "build": "rimraf dist/ && babel ./src/ --out-dir dist/ --ignore ./node_modules,./.eslintrc.json,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "npm run build && nodemon --ignore dist --exec babel-node dist/"
   },
   "repository": "https://github.com/VolkRiot/ScraperMongo.git",
