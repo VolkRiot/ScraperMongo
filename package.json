@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && nodemon dist/index.js"
+    "start": "npm run build && nodemon --ignore dist --exec babel-node dist/"
   },
   "repository": "https://github.com/VolkRiot/ScraperMongo.git",
   "author": "Mikhail Metrikin <metrikin@gmail.com>",
@@ -22,6 +22,13 @@
     "rimraf": "^2.6.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
     "nodemon": "^1.11.0"
   }
 }
