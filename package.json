@@ -6,8 +6,8 @@
     "test": "eslint src",
     "build": "rimraf dist/ && babel ./src/ --out-dir dist/ --ignore ./node_modules,./.eslintrc.json,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "npm run build && nodemon --ignore dist --exec babel-node dist/",
-    "pre-commit": "npm test",
-    "pre-push": "npm test"
+    "precommit": "npm test",
+    "prepush": "npm test"
   },
   "repository": "https://github.com/VolkRiot/ScraperMongo.git",
   "author": "Mikhail Metrikin <metrikin@gmail.com>",
