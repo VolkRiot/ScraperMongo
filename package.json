@@ -1,0 +1,8 @@
+{
+  "name": "ScraperMongo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/VolkRiot/ScraperMongo.git",
+  "author": "Mikhail Metrikin <metrikin@gmail.com>",
+  "license": "MIT"
+}
