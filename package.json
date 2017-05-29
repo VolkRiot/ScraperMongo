@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint src",
-    "build": "rimraf dist/ && babel ./src/ --out-dir dist/ --ignore ./node_modules,./.eslintrc.json,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.eslintrc.json,./.babelrc,./npm-debug.log --copy-files",
     "start": "npm run build && nodemon --ignore dist --exec babel-node dist/",
     "precommit": "npm test",
     "prepush": "npm test"
