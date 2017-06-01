@@ -1,10 +1,15 @@
+// const renderApp = title =>
+//   `<!doctype html>
+// <html>
+//   <head>
+//     <title>${title}</title>
+//     <link rel="stylesheet" href="/css/style.css">
+//   </head>
+//   <body>
+//     <div id="main-app"></div>
+//   </body>
+// </html>
+// `;
+//
+// export default renderApp;
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var renderApp = function renderApp(title) {
-  return "<!doctype html>\n<html>\n  <head>\n    <title>" + title + "</title>\n    <link rel=\"stylesheet\" href=\"/css/style.css\">\n  </head>\n  <body>\n    <div class=\"main-app\"></div>\n  </body>\n</html>\n";
-};
-
-exports.default = renderApp;
