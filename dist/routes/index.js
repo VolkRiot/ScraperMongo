@@ -1,12 +1,20 @@
 'use strict';
 
-/* eslint-disable */
-var fs = require('fs');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = function (app) {
-  fs.readdirSync(__dirname).forEach(function (file) {
-    if (file == "index.js") return;
-    var name = file.substr(0, file.indexOf('.'));
-    require('./' + name)(app);
-  });
-};
+var _home = require('./home');
+
+var _home2 = _interopRequireDefault(_home);
+
+var _scrape = require('./scrape');
+
+var _scrape2 = _interopRequireDefault(_scrape);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable */
+var Routes = [_home2.default, _scrape2.default];
+
+exports.default = Routes;

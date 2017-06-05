@@ -10,9 +10,9 @@ var _cheerio = require('cheerio');
 
 var _cheerio2 = _interopRequireDefault(_cheerio);
 
-var _request = require('request');
+var _requestPromise = require('request-promise');
 
-var _request2 = _interopRequireDefault(_request);
+var _requestPromise2 = _interopRequireDefault(_requestPromise);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,7 +22,7 @@ var Scraper = function () {
   function Scraper() {
     _classCallCheck(this, Scraper);
 
-    this.request = _request2.default;
+    this.rp = _requestPromise2.default;
     this.cheerio = _cheerio2.default;
     this.mainUrl = 'https://news.google.com/';
     this.$ = undefined;
@@ -38,38 +38,54 @@ var Scraper = function () {
     value: function loadHTML() {
       var _this = this;
 
-      return new Promise(function (res) {
-        _this.request(_this.mainURL, function (err, resp, html) {
-          if (err) throw new Error('Request could not reach the page');
-          _this.$ = _this.cheerio.load(html);
-          res(_this.$);
-        });
-      });
+      var options = {
+        uri: this.mainUrl,
+        transform: function transform(body) {
+          return _this.cheerio.load(body);
+        }
+      };
+
+      return this.rp(options);
+
+      // return new Promise((res, rej) => {
+      //   this.rp(this.mainURL, (err, resp, html) => {
+      //     console.log('And here?');
+      //     if (err) rej();
+      //     if (html) {
+      //       this.$ = this.cheerio.load(html);
+      //       res('this.$');
+      //     }
+      //   });
+      // });
     }
-    // this.request(this.mainURL, (err, resp, html) => {
+    // this.rp(this.mainURL, (err, resp, html) => {
     //   if (err) throw new Error('Request could not reach the page');
     //   this.$ = this.cheerio.load(html);
 
   }, {
     key: 'scrapeMain',
     value: function scrapeMain() {
-      this.loadHTML.then(function ($) {
-        $('.esc-layout-article-cell').each(function (i, em) {
-          var $current = $(em);
-
-          var title = $current.find('h2').text();
-          var source = $current.find('.source-cell').text();
-          var posted = $current.find('.timestamp-cell').text().substring(2);
-
-          var article = {
-            title: title,
-            source: source,
-            posted: posted
-          };
-
-          console.log('Article is ', article);
-        });
+      this.loadHTML().then(function ($) {
+        console.log('Did we maker it?');
       });
+
+      // this.loadHTML().then(($) => {
+      //   $('.esc-layout-article-cell').each((i, em) => {
+      //     const $current = $(em);
+      //
+      //     const title = $current.find('h2').text();
+      //     const source = $current.find('.source-cell').text();
+      //     const posted = $current.find('.timestamp-cell').text().substring(2);
+      //
+      //     const article = {
+      //       title,
+      //       source,
+      //       posted,
+      //     };
+      //
+      //     console.log('Article is ', article);
+      //   });
+      // });
     }
   }]);
 

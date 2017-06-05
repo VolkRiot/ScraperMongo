@@ -1,9 +1,9 @@
 import cheerio from 'cheerio';
-import request from 'request';
+import request from 'request-promise';
 
 class Scraper {
   constructor() {
-    this.request = request;
+    this.rp = request;
     this.cheerio = cheerio;
     this.mainUrl = 'https://news.google.com/';
     this.$ = undefined;
@@ -14,20 +14,15 @@ class Scraper {
   }
 
   loadHTML() {
-    return new Promise((res) => {
-      this.request(this.mainURL, (err, resp, html) => {
-        if (err) throw new Error('Request could not reach the page');
-        this.$ = this.cheerio.load(html);
-        res(this.$);
-      });
-    });
+    const options = {
+      uri: this.mainUrl,
+      transform: body => this.cheerio.load(body),
+    };
+    return this.rp(options);
   }
-  // this.request(this.mainURL, (err, resp, html) => {
-  //   if (err) throw new Error('Request could not reach the page');
-  //   this.$ = this.cheerio.load(html);
 
   scrapeMain() {
-    this.loadHTML.then(($) => {
+    this.loadHTML().then(($) => {
       $('.esc-layout-article-cell').each((i, em) => {
         const $current = $(em);
 
@@ -35,12 +30,13 @@ class Scraper {
         const source = $current.find('.source-cell').text();
         const posted = $current.find('.timestamp-cell').text().substring(2);
 
+        // TODO: Continue to code here dawg
+
         const article = {
           title,
           source,
           posted,
         };
-
         console.log('Article is ', article);
       });
     });

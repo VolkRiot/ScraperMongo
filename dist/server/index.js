@@ -50,7 +50,9 @@ app.engine('hbs', (0, _expressHandlebars2.default)({ defaultLayout: 'main', extn
 app.set('view engine', 'hbs');
 
 // Get routes path
-(0, _routes2.default)(app);
+_routes2.default.forEach(function (route) {
+  route(app);
+});
 
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT);

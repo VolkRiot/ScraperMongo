@@ -3,11 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var routes = function routes(app) {
+var homeRoute = function homeRoute(app) {
   // Home Route
   app.get('/', function (req, res) {
     res.render('home', { articles: '<h1>Hello World</h1>' });
   });
 };
 
-exports.default = routes;
+exports.default = homeRoute;
