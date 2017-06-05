@@ -44,48 +44,29 @@ var Scraper = function () {
           return _this.cheerio.load(body);
         }
       };
-
       return this.rp(options);
-
-      // return new Promise((res, rej) => {
-      //   this.rp(this.mainURL, (err, resp, html) => {
-      //     console.log('And here?');
-      //     if (err) rej();
-      //     if (html) {
-      //       this.$ = this.cheerio.load(html);
-      //       res('this.$');
-      //     }
-      //   });
-      // });
     }
-    // this.rp(this.mainURL, (err, resp, html) => {
-    //   if (err) throw new Error('Request could not reach the page');
-    //   this.$ = this.cheerio.load(html);
-
   }, {
     key: 'scrapeMain',
     value: function scrapeMain() {
       this.loadHTML().then(function ($) {
-        console.log('Did we maker it?');
-      });
+        $('.esc-layout-article-cell').each(function (i, em) {
+          var $current = $(em);
 
-      // this.loadHTML().then(($) => {
-      //   $('.esc-layout-article-cell').each((i, em) => {
-      //     const $current = $(em);
-      //
-      //     const title = $current.find('h2').text();
-      //     const source = $current.find('.source-cell').text();
-      //     const posted = $current.find('.timestamp-cell').text().substring(2);
-      //
-      //     const article = {
-      //       title,
-      //       source,
-      //       posted,
-      //     };
-      //
-      //     console.log('Article is ', article);
-      //   });
-      // });
+          var title = $current.find('h2').text();
+          var source = $current.find('.source-cell').text();
+          var posted = $current.find('.timestamp-cell').text().substring(2);
+
+          // TODO: Continue to code here dawg
+
+          var article = {
+            title: title,
+            source: source,
+            posted: posted
+          };
+          console.log('Article is ', article);
+        });
+      });
     }
   }]);
 
