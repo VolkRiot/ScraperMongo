@@ -38,6 +38,7 @@ var Scraper = function () {
     value: function loadHTML() {
       var _this = this;
 
+      // Load URL from request w/ promise
       var options = {
         uri: this.mainUrl,
         transform: function transform(body) {
@@ -51,58 +52,50 @@ var Scraper = function () {
     value: function scrapeMain() {
       var _this2 = this;
 
+      // Scrape for new Articles in news.google.com
       var newArticles = [];
 
       return new Promise(function (resolve, reject) {
-
+        // Use promise from request promise to parse with cheerio
         _this2.loadHTML().then(function ($) {
-          newArticles = $('.esc-layout-article-cell').each(function (i, em) {
+          $('.esc-layout-article-cell').each(function (i, em) {
+            var skip = false;
             var $current = $(em);
+            var $thumbnail = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image');
 
             var title = $current.find('h2').text();
-
             var source = $current.find('.source-cell').text();
-
             var posted = $current.find('.timestamp-cell').text().substring(2);
+            var photoUrl = $thumbnail.attr('imgsrc');
 
-            var photoUrl = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image').attr('src');
+            // Multiple possible sources of img URL check for alternatives
+            if (photoUrl === undefined) {
+              if ($thumbnail.attr('src')) {
+                photoUrl = $thumbnail.attr('src');
+              } else {
+                skip = true;
+              }
+            }
 
-            newArticles.push({
-              title: title,
-              source: source,
-              posted: posted,
-              photoUrl: photoUrl
-            });
+            // If no reliable img source found skip the article for rendering continuity
+            if (skip === false) {
+              newArticles.push({
+                title: title,
+                source: source,
+                posted: posted,
+                photoUrl: photoUrl
+              });
+            }
           });
-          console.log(newArticles);
-          resolve(newArticles);
+
+          // Resolve promise for use in Routes
+          if (newArticles) {
+            resolve(newArticles);
+          } else {
+            reject();
+          }
         });
       });
-
-      // this.loadHTML().then(($) => {
-      //   newArticles = $('.esc-layout-article-cell').map((i, em) => {
-      //     const $current = $(em);
-      //
-      //     const title = $current.find('h2').text();
-      //
-      //     const source = $current.find('.source-cell').text();
-      //
-      //     const posted = $current.find('.timestamp-cell').text().substring(2);
-      //
-      //     const photoUrl = $current
-      //       .siblings('.esc-layout-thumbnail-cell')
-      //       .find('.esc-thumbnail-image')
-      //       .attr('src');
-      //
-      //     return {
-      //       title,
-      //       source,
-      //       posted,
-      //       photoUrl,
-      //     };
-      //   });
-      // });
-
     }
   }]);
 

@@ -4,7 +4,8 @@ const ScrapeRoute = (app) => {
   app.get('/scrape', (req, res) => {
     const Scrape = new Scraper();
     Scrape.scrapeMain().then((resp) => {
-      console.log(resp);
+      // res.json(resp);
+      res.render('articles', { articles: resp });
     });
 
     // Scrape.scrapeMain().then((articles) => {

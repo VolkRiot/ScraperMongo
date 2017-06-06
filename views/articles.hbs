@@ -1,12 +1,12 @@
 <section>
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper amber darken-1">
       <a href="/scrape" class="brand-logo">Scrapy</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="/">Home</a></li>
         <li><a href="#">Saved Articles</a></li>
         <li>
-          <a href="/scrape" class="waves-effect waves-light btn">SCRAPE NEW ARTICLES!</a>
+          <a href="/scrape" class="waves-effect waves-light btn deep-orange accent-3">SCRAPE NEW ARTICLES!</a>
         </li>
       </ul>
     </div>
@@ -20,10 +20,18 @@
   </div>
 
 <section id="articles">
-  {{#each articles}}
-    <div class="article">
-      <img src="\{{this.photoUrl}}" alt="\{{this.title}}">
+  <div class="container">
+    <div class="row">
+      <div class="col m12">
 
+        {{#each articles}}
+          <div class="article">
+            <img class="materialboxed left" src="{{this.photoUrl}}" data-caption="{{this.title}}">
+
+          </div>
+        {{/each}}
+
+      </div>
     </div>
-  {{/each}}
+  </div>
 </section>
