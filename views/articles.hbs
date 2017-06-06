@@ -20,5 +20,10 @@
   </div>
 
 <section id="articles">
+  {{#each articles}}
+    <div class="article">
+      <img src="\{{this.photoUrl}}" alt="\{{this.title}}">
 
+    </div>
+  {{/each}}
 </section>

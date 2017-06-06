@@ -13,12 +13,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ScrapeRoute = function ScrapeRoute(app) {
   app.get('/scrape', function (req, res) {
     var Scrape = new _scraper2.default();
+    Scrape.scrapeMain().then(function (resp) {
+      //console.log(resp);
+    });
 
-    var articles = {
-      articles: Scrape.scrapeMain()
-    };
+    // Scrape.scrapeMain().then((articles) => {
+    //   console.log("articles works?");
+    // });
 
-    res.render('home', articles);
+    // const articles = {
+    //   articles: Scrape.scrapeMain().then((articles) {
+    //     res.json(articles);
+    //   }),
+    // };
+
+    // res.render('articles', articles);
   });
 };
 

@@ -22,30 +22,58 @@ class Scraper {
   }
 
   scrapeMain() {
-    this.loadHTML().then(($) => {
-      const newArticles = $('.esc-layout-article-cell').map((i, em) => {
-        const $current = $(em);
+    const newArticles = [];
 
-        const title = $current.find('h2').text();
+    return new Promise((resolve, reject) => {
+      this.loadHTML().then(($) => {
+        $('.esc-layout-article-cell').each((i, em) => {
+          const $current = $(em);
 
-        const source = $current.find('.source-cell').text();
+          const title = $current.find('h2').text();
 
-        const posted = $current.find('.timestamp-cell').text().substring(2);
+          const source = $current.find('.source-cell').text();
 
-        const photoUrl = $current
-          .siblings('.esc-layout-thumbnail-cell')
-          .find('.esc-thumbnail-image')
-          .attr('src');
+          const posted = $current.find('.timestamp-cell').text().substring(2);
 
-        return {
-          title,
-          source,
-          posted,
-          photoUrl,
-        };
+          const photoUrl = $current
+            .siblings('.esc-layout-thumbnail-cell')
+            .find('.esc-thumbnail-image')
+            .attr('src');
+
+          newArticles.push({
+            title,
+            source,
+            posted,
+            photoUrl,
+          });
+        });
+        resolve(newArticles);
       });
-      return newArticles;
     });
+
+    // this.loadHTML().then(($) => {
+    //   newArticles = $('.esc-layout-article-cell').map((i, em) => {
+    //     const $current = $(em);
+    //
+    //     const title = $current.find('h2').text();
+    //
+    //     const source = $current.find('.source-cell').text();
+    //
+    //     const posted = $current.find('.timestamp-cell').text().substring(2);
+    //
+    //     const photoUrl = $current
+    //       .siblings('.esc-layout-thumbnail-cell')
+    //       .find('.esc-thumbnail-image')
+    //       .attr('src');
+    //
+    //     return {
+    //       title,
+    //       source,
+    //       posted,
+    //       photoUrl,
+    //     };
+    //   });
+    // });
   }
 }
 

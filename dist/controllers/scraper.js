@@ -49,27 +49,60 @@ var Scraper = function () {
   }, {
     key: 'scrapeMain',
     value: function scrapeMain() {
-      this.loadHTML().then(function ($) {
-        var newArticles = $('.esc-layout-article-cell').map(function (i, em) {
-          var $current = $(em);
+      var _this2 = this;
 
-          var title = $current.find('h2').text();
+      var newArticles = [];
 
-          var source = $current.find('.source-cell').text();
+      return new Promise(function (resolve, reject) {
 
-          var posted = $current.find('.timestamp-cell').text().substring(2);
+        _this2.loadHTML().then(function ($) {
+          newArticles = $('.esc-layout-article-cell').each(function (i, em) {
+            var $current = $(em);
 
-          var photoUrl = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image').attr('src');
+            var title = $current.find('h2').text();
 
-          return {
-            title: title,
-            source: source,
-            posted: posted,
-            photoUrl: photoUrl
-          };
+            var source = $current.find('.source-cell').text();
+
+            var posted = $current.find('.timestamp-cell').text().substring(2);
+
+            var photoUrl = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image').attr('src');
+
+            newArticles.push({
+              title: title,
+              source: source,
+              posted: posted,
+              photoUrl: photoUrl
+            });
+          });
+          console.log(newArticles);
+          resolve(newArticles);
         });
-        return newArticles;
       });
+
+      // this.loadHTML().then(($) => {
+      //   newArticles = $('.esc-layout-article-cell').map((i, em) => {
+      //     const $current = $(em);
+      //
+      //     const title = $current.find('h2').text();
+      //
+      //     const source = $current.find('.source-cell').text();
+      //
+      //     const posted = $current.find('.timestamp-cell').text().substring(2);
+      //
+      //     const photoUrl = $current
+      //       .siblings('.esc-layout-thumbnail-cell')
+      //       .find('.esc-thumbnail-image')
+      //       .attr('src');
+      //
+      //     return {
+      //       title,
+      //       source,
+      //       posted,
+      //       photoUrl,
+      //     };
+      //   });
+      // });
+
     }
   }]);
 
