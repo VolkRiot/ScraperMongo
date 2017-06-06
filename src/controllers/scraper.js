@@ -23,22 +23,28 @@ class Scraper {
 
   scrapeMain() {
     this.loadHTML().then(($) => {
-      $('.esc-layout-article-cell').each((i, em) => {
+      const newArticles = $('.esc-layout-article-cell').map((i, em) => {
         const $current = $(em);
 
         const title = $current.find('h2').text();
+
         const source = $current.find('.source-cell').text();
+
         const posted = $current.find('.timestamp-cell').text().substring(2);
 
-        // TODO: Continue to code here dawg
+        const photoUrl = $current
+          .siblings('.esc-layout-thumbnail-cell')
+          .find('.esc-thumbnail-image')
+          .attr('src');
 
-        const article = {
+        return {
           title,
           source,
           posted,
+          photoUrl,
         };
-        console.log('Article is ', article);
       });
+      return newArticles;
     });
   }
 }

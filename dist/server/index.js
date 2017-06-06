@@ -42,8 +42,8 @@ app.use(_bodyParser2.default.text());
 app.use(_bodyParser2.default.json({ type: 'application/vnd.api+json' }));
 
 // Static Routes
-app.use(_express2.default.static(_path2.default.join(__dirname, 'public/')));
-app.use(_express2.default.static(_path2.default.join(__dirname, 'views/')));
+app.use(_express2.default.static(_path2.default.join(__dirname, '../../public')));
+app.use(_express2.default.static(_path2.default.join(__dirname, '../../views')));
 
 // Set-up View Engine
 app.engine('hbs', (0, _expressHandlebars2.default)({ defaultLayout: 'main', extname: '.hbs' }));

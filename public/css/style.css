@@ -1,0 +1,15 @@
+a.brand-logo {
+  margin-left: 1em;
+}
+
+nav ul.left{
+  margin-left: 10em;
+}
+
+.jumbotron{
+  top: -0.5em;
+  z-index: -1;
+  height: 30em;
+  background-image: url('../images/newspaper-wallpaper.jpg');
+  background-size: cover;
+}

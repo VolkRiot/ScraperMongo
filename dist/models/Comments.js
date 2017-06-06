@@ -12,29 +12,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Schema = _mongoose2.default.Schema;
 
-var ArticleSchema = new Schema({
-  title: {
+var CommentSchema = new Schema({
+  author: {
     type: String,
     required: true
   },
-  source: {
+  body: {
     type: String,
     required: true
-  },
-  posted: {
-    type: String,
-    required: true
-  },
-  photoUrl: {
-    type: String,
-    required: true
-  },
-  comments: {
-    type: Schema.Types.ObjectId,
-    ref: 'Comments'
   }
 });
 
-var Article = _mongoose2.default.model('Article', ArticleSchema);
+var Comment = _mongoose2.default.model('Comment', CommentSchema);
 
-exports.default = Article;
+exports.default = Comment;

@@ -50,22 +50,25 @@ var Scraper = function () {
     key: 'scrapeMain',
     value: function scrapeMain() {
       this.loadHTML().then(function ($) {
-        $('.esc-layout-article-cell').each(function (i, em) {
+        var newArticles = $('.esc-layout-article-cell').map(function (i, em) {
           var $current = $(em);
 
           var title = $current.find('h2').text();
+
           var source = $current.find('.source-cell').text();
+
           var posted = $current.find('.timestamp-cell').text().substring(2);
 
-          // TODO: Continue to code here dawg
+          var photoUrl = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image').attr('src');
 
-          var article = {
+          return {
             title: title,
             source: source,
-            posted: posted
+            posted: posted,
+            photoUrl: photoUrl
           };
-          console.log('Article is ', article);
         });
+        return newArticles;
       });
     }
   }]);
