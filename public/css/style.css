@@ -13,3 +13,24 @@ nav ul.left{
   background-image: url('../images/newspaper-wallpaper.jpg');
   background-size: cover;
 }
+
+.text-block{
+  margin-left: 1em;
+  width: 80%;
+}
+
+.text-line{
+  margin: 0;
+}
+
+h5.truncate.left {
+    width: 75%;
+}
+
+.no-margins{
+  margin: 0;
+}
+
+.span-between{
+  margin: 0 0.5em 0 0.5em;
+}

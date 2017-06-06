@@ -36,7 +36,9 @@ class Scraper {
             .siblings('.esc-layout-thumbnail-cell')
             .find('.esc-thumbnail-image');
 
+          // Scrape for objects or whatever
           const title = $current.find('h2').text();
+          const link = $current.find('h2 > a').attr('href');
           const source = $current.find('.source-cell').text();
           const posted = $current.find('.timestamp-cell').text().substring(2);
           let photoUrl = $thumbnail.attr('imgsrc');
@@ -54,6 +56,7 @@ class Scraper {
           if (skip === false) {
             newArticles.push({
               title,
+              link,
               source,
               posted,
               photoUrl,

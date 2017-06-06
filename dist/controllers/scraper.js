@@ -63,7 +63,9 @@ var Scraper = function () {
             var $current = $(em);
             var $thumbnail = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image');
 
+            // Scrape for objects or whatever
             var title = $current.find('h2').text();
+            var link = $current.find('h2 > a').attr('href');
             var source = $current.find('.source-cell').text();
             var posted = $current.find('.timestamp-cell').text().substring(2);
             var photoUrl = $thumbnail.attr('imgsrc');
@@ -81,6 +83,7 @@ var Scraper = function () {
             if (skip === false) {
               newArticles.push({
                 title: title,
+                link: link,
                 source: source,
                 posted: posted,
                 photoUrl: photoUrl
