@@ -24,7 +24,18 @@ app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../views')));
 
 // Set-up View Engine
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.engine(
+  'hbs',
+  exphbs({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    helpers: {
+      stringify(obj) {
+        return JSON.stringify(obj);
+      },
+    },
+  }),
+);
 app.set('view engine', 'hbs');
 
 // Get routes path
