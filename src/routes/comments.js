@@ -17,7 +17,7 @@ const saveComment = (app) => {
           if (error) {
             res.status(500).send('Error happens');
           } else {
-            res.json({success: true});
+            res.json({ success: true });
           }
         });
       }
