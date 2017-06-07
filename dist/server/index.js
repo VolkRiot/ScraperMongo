@@ -39,7 +39,12 @@ var PORT = process.env.PORT || 8080;
 
 var app = (0, _express2.default)();
 
-_mongoose2.default.connect('mongodb://localhost/GNewsScraper');
+if (process.env.MONGODB_URI) {
+  _mongoose2.default.connect(process.env.MONGODB_URI);
+} else {
+  _mongoose2.default.connect('mongodb://localhost/GNewsScraper');
+}
+
 var db = _mongoose2.default.connection;
 
 // Show any mongoose errors

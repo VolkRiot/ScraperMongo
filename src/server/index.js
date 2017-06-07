@@ -14,7 +14,12 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/GNewsScraper');
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect('mongodb://localhost/GNewsScraper');
+}
+
 const db = mongoose.connection;
 
 // Show any mongoose errors
