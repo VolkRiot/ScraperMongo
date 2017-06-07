@@ -1,6 +1,6 @@
 import Articles from '../models/Articles';
 
-const saveRoutes = (app) => {
+const saveRoute = (app) => {
   app.post('/save', (req, res) => {
     const newArticle = new Articles(req.body);
     newArticle.save((err) => {
@@ -17,4 +17,16 @@ const saveRoutes = (app) => {
   });
 };
 
-export default saveRoutes;
+const savedArticles = (app) => {
+  app.get('/saved', (req, res) => {
+    Articles.find({}).then((resp, err) => {
+      if (err) {
+        res.status(500).send('Server error: Could not retrieve articles');
+      } else {
+        res.render('saved', { articles: resp });
+      }
+    });
+  });
+};
+
+export { saveRoute, savedArticles };

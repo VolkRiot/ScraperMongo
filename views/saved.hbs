@@ -1,0 +1,40 @@
+<div class="card blue darken-1 jumbotron">
+  <div class="card-content white-text">
+    <!-- <span class="card-title">Card Title</span> -->
+  </div>
+</div>
+
+<section id="articles">
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+
+      {{#each articles}}
+        <div class="article section" style="overflow: auto">
+          <div class="article-panel">
+            <a href="{{this.link}}" target="_blank">
+            <img class="left" src="{{this.photoUrl}}" data-caption="{{this.title}}">
+            </a>
+            <div class="text-block left">
+              <a href="{{this.link}}" target="_blank">
+              <h5 class="truncate left no-margins">{{this.title}}</h5>
+              </a>
+              <a href="#" class="right waves-effect waves-light btn deep-orange accent-3 save-button" data="{{stringify this}}">Save Article</a>
+              <div class="row">
+                <div class="col m12 left">
+                  <em class="no-margins left">{{this.source}}</em><span class="left span-between"> - </span><p class="no-margins left">{{this.posted}}</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+</div>
+</section>
+<script type="text/javascript" src="js/client.js"></script>
