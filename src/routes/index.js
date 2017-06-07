@@ -1,7 +1,8 @@
 /* eslint-disable */
 import homeRoute from './home';
-import ScrapeRoute from './scrape';
+import scrapeRoute from './scrape';
+import saveRoutes from './save';
 
-const Routes = [homeRoute, ScrapeRoute];
+const Routes = [homeRoute, scrapeRoute, saveRoutes];
 
 export default Routes;

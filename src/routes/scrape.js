@@ -1,6 +1,6 @@
 import Scraper from '../controllers/scraper';
 
-const ScrapeRoute = (app) => {
+const scrapeRoute = (app) => {
   app.get('/scrape', (req, res) => {
     const Scrape = new Scraper();
     Scrape.scrapeMain().then((resp) => {
@@ -9,4 +9,4 @@ const ScrapeRoute = (app) => {
   });
 };
 
-export default ScrapeRoute;
+export default scrapeRoute;
