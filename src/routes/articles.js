@@ -5,6 +5,7 @@ const saveRoute = (app) => {
     const newArticle = new Articles(req.body);
     newArticle.save((err) => {
       if (err) {
+        // Mongo Error code for duplicate record
         if (err.code === 11000) {
           res.json({ duplicate: true });
         } else {
@@ -29,4 +30,17 @@ const savedArticles = (app) => {
   });
 };
 
-export { saveRoute, savedArticles };
+const deleteArticles = (app) => {
+  app.delete('/delete', (req, res) => {
+    const id = req.body.id;
+    Articles.findByIdAndRemove(id).then((deleted) => {
+      if (!deleted) {
+        res.status(500).send('Server Error: Failed to remove this record');
+      } else {
+        res.json({ success: true });
+      }
+    });
+  });
+};
+
+export { saveRoute, savedArticles, deleteArticles };

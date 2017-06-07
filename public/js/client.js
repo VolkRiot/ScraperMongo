@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-names */
+/* eslint-disable no-underscore-dangle */
 
 $(document).ready(() => {
   $('.save-button').on('click', function () {
@@ -15,5 +16,25 @@ $(document).ready(() => {
       }
     });
   });
-  $('.collapsible').collapsible();
+
+  $('.comment-button').on('click', function (e) {
+    e.preventDefault();
+    $(this).collapsible();
+  });
+
+  $('.delete-button').on('click', function (e) {
+    e.preventDefault();
+    const $deleteButton = $(this);
+    const article = JSON.parse($deleteButton.attr('data'));
+    $.ajax({
+      url: '/delete',
+      type: 'DELETE',
+      data: { id: article._id },
+      success(result) {
+        if (result.success) {
+          $deleteButton.closest('.article-cell').remove();
+        }
+      },
+    });
+  });
 });

@@ -12,7 +12,7 @@
   <ul class="collapsible" data-collapsible="accordion">
       {{#each articles}}
 
-      <li>
+      <li class="article-cell">
         <div class="collapsible-header">
 
           <div class="article section" style="overflow: auto">
@@ -26,10 +26,10 @@
                 </a>
                 <ul>
                   <li>
-                    <a href="#" class="right waves-effect waves-light btn deep-orange accent-3 comment-button" data="{{stringify this}}">Comments</a>
+                    <a href="#" class="right waves-effect waves-light btn  purple darken-1 comment-button" data="{{stringify this}}">Comments</a>
                   </li>
                   <li>
-                    <a href="/delete" class="right waves-effect waves-light btn deep-orange accent-3 comment-button" data="{{stringify this}}">Delete</a>
+                    <a href="#" class="right waves-effect waves-light btn red darken-2 delete-button" data="{{stringify this}}">Delete</a>
                   </li>
                 </ul>
 
