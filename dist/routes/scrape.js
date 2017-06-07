@@ -10,7 +10,7 @@ var _scraper2 = _interopRequireDefault(_scraper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ScrapeRoute = function ScrapeRoute(app) {
+var scrapeRoute = function scrapeRoute(app) {
   app.get('/scrape', function (req, res) {
     var Scrape = new _scraper2.default();
     Scrape.scrapeMain().then(function (resp) {
@@ -19,4 +19,4 @@ var ScrapeRoute = function ScrapeRoute(app) {
   });
 };
 
-exports.default = ScrapeRoute;
+exports.default = scrapeRoute;

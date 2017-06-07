@@ -7,6 +7,13 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
+  link: {
+    type: String,
+    required: true,
+    index: {
+      unique: true,
+    },
+  },
   source: {
     type: String,
     required: true,
@@ -19,10 +26,12 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
-  comments: {
-    type: Schema.Types.ObjectId,
-    ref: 'Comments',
-  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comments',
+    },
+  ],
 });
 
 const Article = mongoose.model('Article', ArticleSchema);

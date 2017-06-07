@@ -17,6 +17,13 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  link: {
+    type: String,
+    required: true,
+    index: {
+      unique: true
+    }
+  },
   source: {
     type: String,
     required: true
@@ -29,10 +36,10 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  comments: {
+  comments: [{
     type: Schema.Types.ObjectId,
     ref: 'Comments'
-  }
+  }]
 });
 
 var Article = _mongoose2.default.model('Article', ArticleSchema);

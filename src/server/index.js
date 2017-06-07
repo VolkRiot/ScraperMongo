@@ -4,13 +4,28 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import exphbs from 'express-handlebars';
 import compression from 'compression';
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import path from 'path';
 import Routes from '../routes';
+
+mongoose.Promise = Promise;
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
+
+mongoose.connect('mongodb://localhost/GNewsScraper');
+const db = mongoose.connection;
+
+// Show any mongoose errors
+db.on('error', (error) => {
+  console.log('Mongoose Error: ', error);
+});
+
+// Once logged in to the db through mongoose, log a success message
+db.once('open', () => {
+  console.log('Mongoose connection successful.');
+});
 
 // Body Parser Middleware
 app.use(compression());
