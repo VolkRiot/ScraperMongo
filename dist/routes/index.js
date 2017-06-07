@@ -16,5 +16,5 @@ var _articles = require('./articles');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Routes = [_home2.default, _scrape2.default, _articles.saveRoute, _articles.savedArticles]; /* eslint-disable */
+var Routes = [_home2.default, _scrape2.default, _articles.saveRoute, _articles.savedArticles, _articles.deleteArticles]; /* eslint-disable */
 exports.default = Routes;

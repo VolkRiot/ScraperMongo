@@ -1,4 +1,5 @@
 import Articles from '../models/Articles';
+import Comment from '../models/Comments';
 
 const saveRoute = (app) => {
   app.post('/save', (req, res) => {
@@ -20,7 +21,7 @@ const saveRoute = (app) => {
 
 const savedArticles = (app) => {
   app.get('/saved', (req, res) => {
-    Articles.find({}).then((resp, err) => {
+    Articles.find({}).populate('comments').exec((err, resp) => {
       if (err) {
         res.status(500).send('Server error: Could not retrieve articles');
       } else {

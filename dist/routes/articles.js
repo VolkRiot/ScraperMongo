@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.savedArticles = exports.saveRoute = undefined;
+exports.deleteArticles = exports.savedArticles = exports.saveRoute = undefined;
 
 var _Articles = require('../models/Articles');
 
@@ -16,6 +16,7 @@ var saveRoute = function saveRoute(app) {
     var newArticle = new _Articles2.default(req.body);
     newArticle.save(function (err) {
       if (err) {
+        // Mongo Error code for duplicate record
         if (err.code === 11000) {
           res.json({ duplicate: true });
         } else {
@@ -30,7 +31,7 @@ var saveRoute = function saveRoute(app) {
 
 var savedArticles = function savedArticles(app) {
   app.get('/saved', function (req, res) {
-    _Articles2.default.find({}).then(function (resp, err) {
+    _Articles2.default.find({}).populate('comments').exec(function (resp, err) {
       if (err) {
         res.status(500).send('Server error: Could not retrieve articles');
       } else {
@@ -40,5 +41,19 @@ var savedArticles = function savedArticles(app) {
   });
 };
 
+var deleteArticles = function deleteArticles(app) {
+  app.delete('/delete', function (req, res) {
+    var id = req.body.id;
+    _Articles2.default.findByIdAndRemove(id).then(function (deleted) {
+      if (!deleted) {
+        res.status(500).send('Server Error: Failed to remove this record');
+      } else {
+        res.json({ success: true });
+      }
+    });
+  });
+};
+
 exports.saveRoute = saveRoute;
 exports.savedArticles = savedArticles;
+exports.deleteArticles = deleteArticles;
