@@ -9,6 +9,10 @@ var _Articles = require('../models/Articles');
 
 var _Articles2 = _interopRequireDefault(_Articles);
 
+var _Comments = require('../models/Comments');
+
+var _Comments2 = _interopRequireDefault(_Comments);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var saveRoute = function saveRoute(app) {
@@ -31,7 +35,7 @@ var saveRoute = function saveRoute(app) {
 
 var savedArticles = function savedArticles(app) {
   app.get('/saved', function (req, res) {
-    _Articles2.default.find({}).populate('comments').exec(function (resp, err) {
+    _Articles2.default.find({}).populate('comments').exec(function (err, resp) {
       if (err) {
         res.status(500).send('Server error: Could not retrieve articles');
       } else {

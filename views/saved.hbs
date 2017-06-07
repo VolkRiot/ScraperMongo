@@ -46,12 +46,19 @@
         <div class="collapsible-body">
           <div class="row">
             <div class="col m12">
-              <!-- Notes will go here then -->
+              {{#each this.comments}}
+              <blockquote>
+                {{this.comments}}
+              </blockquote>
+              {{/each}}
             </div>
           </div>
           <div class="row">
             <div class="col m12">
-              <!-- Form will go here then -->
+              <form class="" action="" method="post">
+                <input id="comment" type="text">
+                <a class="right waves-effect waves-light btn amber darken-4">Leave Comment</a>
+              </form>
             </div>
           </div>
         </div>
