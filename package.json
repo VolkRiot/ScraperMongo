@@ -5,7 +5,7 @@
   "scripts": {
     "test": "eslint src",
     "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.eslintrc.json,./.babelrc,./npm-debug.log --copy-files",
-    "start": "yarn dev:start",
+    "start": "node dist/server/",
     "dev:start": "npm run build && nodemon --ignore dist --exec babel-node src/server/",
     "prod:build": "rimraf lib && babel src -d lib",
     "precommit": "npm test",
