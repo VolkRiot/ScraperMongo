@@ -15,6 +15,7 @@ var _Comments2 = _interopRequireDefault(_Comments);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable no-underscore-dangle */
 var saveComment = function saveComment(app) {
   app.post('/newcomment/:id', function (req, res) {
     var newComment = new _Comments2.default({ body: req.body.comment });
@@ -23,13 +24,11 @@ var saveComment = function saveComment(app) {
       if (err) {
         res.status(500).send('Could not save comment');
       } else {
-        console.log();
-        _Articles2.default.findOneAndUpdate({ _id: req.params.id }, { $push: { comments: resp._id } }).exec(function (err, resp) {
-          if (err) {
-            console.log('Error is ', err);
+        _Articles2.default.findOneAndUpdate({ _id: req.params.id }, { $push: { comments: resp._id } }).exec(function (error) {
+          if (error) {
             res.status(500).send('Error happens');
           } else {
-            res.json(resp);
+            res.json({ success: true });
           }
         });
       }

@@ -45,7 +45,9 @@ $(document).ready(() => {
     let articleId = $button.attr('data-id');
     $.post(`/newcomment/${articleId}`, { comment: value }, (resp) => {
       if (resp.success) {
-        // Will manually update comment here
+        $button.closest('.comments-list').append($('<blockquote>').text(value));
+      } else {
+        Materialize.toast('Could not save your comment', 3000);
       }
     });
   });

@@ -57,6 +57,7 @@ var Scraper = function () {
 
       return new Promise(function (resolve, reject) {
         // Use promise from request promise to parse with cheerio
+        // TODO: (Add catch here)
         _this2.loadHTML().then(function ($) {
           $('.esc-layout-article-cell').each(function (i, em) {
             var skip = false;

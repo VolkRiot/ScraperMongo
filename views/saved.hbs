@@ -45,10 +45,10 @@
         </div>
         <div class="collapsible-body">
           <div class="row">
-            <div class="col m12">
+            <div class="col m12" id="comment-block-{{this._id}}">
               {{#each this.comments}}
               <blockquote>
-                {{this.comments}}
+                {{this.body}}
               </blockquote>
               {{/each}}
             </div>
