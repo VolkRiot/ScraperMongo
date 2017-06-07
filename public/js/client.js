@@ -15,4 +15,5 @@ $(document).ready(() => {
       }
     });
   });
+  $('.collapsible').collapsible();
 });
