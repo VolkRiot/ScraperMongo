@@ -22,9 +22,17 @@
               </a>
               <div class="text-block left">
                 <a href="{{this.link}}" target="_blank">
-                <h5 class="truncate left no-margins">{{this.title}}</h5>
+                <h5 class="truncate left no-margins saved-article-title">{{this.title}}</h5>
                 </a>
-                <a href="#" class="right waves-effect waves-light btn deep-orange accent-3 save-button" data="{{stringify this}}">Save Article</a>
+                <ul>
+                  <li>
+                    <a href="#" class="right waves-effect waves-light btn deep-orange accent-3 comment-button" data="{{stringify this}}">Comments</a>
+                  </li>
+                  <li>
+                    <a href="/delete" class="right waves-effect waves-light btn deep-orange accent-3 comment-button" data="{{stringify this}}">Delete</a>
+                  </li>
+                </ul>
+
                 <div class="row">
                   <div class="col m12 left">
                     <em class="no-margins left">{{this.source}}</em><span class="left span-between"> - </span><p class="no-margins left">{{this.posted}}</p>
@@ -38,7 +46,7 @@
         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
       </li>
       {{/each}}
-      
+
       </ul>
 
     </div>

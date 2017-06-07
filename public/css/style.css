@@ -34,3 +34,11 @@ h5.truncate.left {
 .span-between{
   margin: 0 0.5em 0 0.5em;
 }
+
+h5.saved-article-title{
+  width: 60% !important;
+}
+
+.comment-button {
+    margin-right: 1em;
+}
