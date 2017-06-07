@@ -80,6 +80,13 @@ _routes2.default.forEach(function (route) {
   route(app);
 });
 
+process.on('SIGINT', function () {
+  _mongoose2.default.connection.close(function () {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
+
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT);
 });

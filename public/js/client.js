@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable func-names */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable prefer-const */
 
 $(document).ready(() => {
   $('.save-button').on('click', function () {
@@ -27,14 +28,25 @@ $(document).ready(() => {
     const $deleteButton = $(this);
     const article = JSON.parse($deleteButton.attr('data'));
     $.ajax({
-      url: '/delete',
+      url: `/delete/${article._id}`,
       type: 'DELETE',
-      data: { id: article._id },
       success(result) {
         if (result.success) {
           $deleteButton.closest('.article-cell').remove();
         }
       },
+    });
+  });
+
+  $('.submit-comment').on('click', function (e) {
+    e.preventDefault();
+    const $button = $(this);
+    let value = $button.siblings('.comment-input').val();
+    let articleId = $button.attr('data-id');
+    $.post(`/newcomment/${articleId}`, { comment: value }, (resp) => {
+      if (resp.success) {
+        // Will manually update comment here
+      }
     });
   });
 });

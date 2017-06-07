@@ -58,6 +58,13 @@ Routes.forEach((route) => {
   route(app);
 });
 
+process.on('SIGINT', () => {
+  mongoose.connection.close(() => {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });

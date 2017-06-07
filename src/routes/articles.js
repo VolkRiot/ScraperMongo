@@ -1,5 +1,4 @@
 import Articles from '../models/Articles';
-import Comment from '../models/Comments';
 
 const saveRoute = (app) => {
   app.post('/save', (req, res) => {
@@ -32,8 +31,8 @@ const savedArticles = (app) => {
 };
 
 const deleteArticles = (app) => {
-  app.delete('/delete', (req, res) => {
-    const id = req.body.id;
+  app.delete('/delete/:id', (req, res) => {
+    const id = req.params.id;
     Articles.findByIdAndRemove(id).then((deleted) => {
       if (!deleted) {
         res.status(500).send('Server Error: Failed to remove this record');

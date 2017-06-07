@@ -9,10 +9,6 @@ var _Articles = require('../models/Articles');
 
 var _Articles2 = _interopRequireDefault(_Articles);
 
-var _Comments = require('../models/Comments');
-
-var _Comments2 = _interopRequireDefault(_Comments);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var saveRoute = function saveRoute(app) {
@@ -46,8 +42,8 @@ var savedArticles = function savedArticles(app) {
 };
 
 var deleteArticles = function deleteArticles(app) {
-  app.delete('/delete', function (req, res) {
-    var id = req.body.id;
+  app.delete('/delete/:id', function (req, res) {
+    var id = req.params.id;
     _Articles2.default.findByIdAndRemove(id).then(function (deleted) {
       if (!deleted) {
         res.status(500).send('Server Error: Failed to remove this record');
