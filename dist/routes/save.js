@@ -13,9 +13,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var saveRoutes = function saveRoutes(app) {
   app.post('/save', function (req, res) {
     var newArticle = new _Articles2.default(req.body);
-    newArticle.save(function (err, doc) {
+    newArticle.save(function (err) {
       if (err) {
-        res.status(500).send('Server error: Could not save article');
+        if (err.code === 11000) {
+          res.json({ duplicate: true });
+        } else {
+          res.status(500).send('Server error: Could not save article');
+        }
       } else {
         res.json({ success: true });
       }
