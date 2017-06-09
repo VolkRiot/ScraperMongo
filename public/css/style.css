@@ -43,6 +43,10 @@ h5.saved-article-title{
     margin-right: 1em;
 }
 
+.collapsible-header.card-panel {
+    padding-bottom: 1em;
+}
+
 @media screen and (max-width: 1250px) {
     h5.truncate.left {
     width: 70%;
