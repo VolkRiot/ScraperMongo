@@ -47,9 +47,17 @@
           <div class="row">
             <div class="col m12" id="comment-block-{{this._id}}">
               {{#each this.comments}}
-              <blockquote>
-                {{this.body}}
-              </blockquote>
+              <div class="row">
+                <div class="col m10">
+                  <blockquote>
+                    {{this.body}}
+                  </blockquote>
+                </div>
+                <div class="col m2">
+                  <a class="right waves-effect waves-light btn amber darken-4 submit-comment" data-id="{{this._id}}">X</a>
+                </div>
+              </div>
+
               {{/each}}
             </div>
           </div>

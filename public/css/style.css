@@ -42,3 +42,25 @@ h5.saved-article-title{
 .delete-button {
     margin-right: 1em;
 }
+
+@media screen and (max-width: 1250px) {
+    h5.truncate.left {
+    width: 70%;
+  }
+  .text-block {
+    margin-left: 1em;
+    width: 75%;
+  }
+
+}
+
+@media screen and (max-width: 860px) {
+  h5.truncate.left {
+  width: 58%;
+  }
+  .text-block {
+    margin-left: 1em;
+    width: 65%;
+  }
+
+}
