@@ -19,6 +19,6 @@ var _comments = require('./comments');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable */
-var Routes = [_home2.default, _scrape2.default, _articles.saveRoute, _articles.savedArticles, _articles.deleteArticles, _comments.saveComment];
+var Routes = [_home2.default, _scrape2.default, _articles.saveRoute, _articles.savedArticles, _articles.deleteArticles, _comments.saveComment, _comments.deleteComment];
 
 exports.default = Routes;

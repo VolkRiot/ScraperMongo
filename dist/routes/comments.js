@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.saveComment = undefined;
+exports.deleteComment = exports.saveComment = undefined;
 
 var _Articles = require('../models/Articles');
 
@@ -36,4 +36,17 @@ var saveComment = function saveComment(app) {
   });
 };
 
+var deleteComment = function deleteComment(app) {
+  app.delete('/delete/comment/:id', function (req, res) {
+    _Comments2.default.findByIdAndRemove(req.params.id).then(function (deleted) {
+      if (!deleted) {
+        res.status(500).send('Server Error: Failed to remove this record');
+      } else {
+        res.json({ success: true });
+      }
+    });
+  });
+};
+
 exports.saveComment = saveComment;
+exports.deleteComment = deleteComment;

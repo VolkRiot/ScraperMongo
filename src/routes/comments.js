@@ -25,4 +25,16 @@ const saveComment = (app) => {
   });
 };
 
-export { saveComment };
+const deleteComment = (app) => {
+  app.delete('/delete/comment/:id', (req, res) => {
+    Comment.findByIdAndRemove(req.params.id).then((deleted) => {
+      if (!deleted) {
+        res.status(500).send('Server Error: Failed to remove this record');
+      } else {
+        res.json({ success: true });
+      }
+    });
+  });
+};
+
+export { saveComment, deleteComment };

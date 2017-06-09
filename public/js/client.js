@@ -2,6 +2,12 @@
 prefer-const, prefer-arrow-callback, no-var, vars-on-top, prefer-template */
 
 $(document).ready(function () {
+  $(document).keypress(function (e) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
   $('.save-button').on('click', function () {
     var $button = $(this);
     var article = JSON.parse($button.attr('data'));
@@ -41,6 +47,7 @@ $(document).ready(function () {
     var $button = $(this);
     var value = $button.siblings('.comment-input').val();
     var articleId = $button.attr('data-id');
+    $button.siblings('.comment-input').val('');
     $.post('/newcomment/' + articleId, { comment: value }, function (resp) {
       if (resp.success) {
         $('#comment-block-' + articleId).append($('<blockquote>').text(value));
@@ -49,5 +56,20 @@ $(document).ready(function () {
       }
     });
   });
-  $('.remove-comment').on('click', function () {});
+  $('.remove-comment').on('click', function () {
+    var $button = $(this);
+    var commentID = $button.attr('data-id');
+    $.ajax({
+      url: '/delete/comment/' + commentID,
+      type: 'DELETE',
+      success(result) {
+        if (result.success) {
+          $('#comment-' + commentID).remove();
+          $button.remove();
+        } else {
+          Materialize.toast('Could not delete the comment', 3000);
+        }
+      },
+    });
+  });
 });
