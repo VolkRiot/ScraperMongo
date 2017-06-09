@@ -50,7 +50,26 @@ $(document).ready(function () {
     $button.siblings('.comment-input').val('');
     $.post('/newcomment/' + articleId, { comment: value }, function (resp) {
       if (resp.success) {
-        $('#comment-block-' + articleId).append($('<blockquote>').text(value));
+        var block =
+          '<div class="row">' +
+          '<div class="col m10">' +
+          '<blockquote id="comment-' +
+          resp.id +
+          '">' +
+          value +
+          '</blockquote>' +
+          '</div>' +
+          '<div class="col m2">' +
+          '<a class="right waves-effect waves-light btn amber darken-4 remove-comment" data-id="' +
+          resp.id +
+          '">X</a>' +
+          '</div>' +
+          '</div>';
+
+        $('#comment-block-' + articleId).append(block);
+        $('#comment-block-' + articleId).find('.remove-comment').on('click', function () {
+          $(this).closest('.row').remove();
+        });
       } else {
         Materialize.toast('Could not save your comment', 3000);
       }
