@@ -1,8 +1,9 @@
 /* eslint-disable no-undef, func-names, no-underscore-dangle,
-prefer-const, prefer-arrow-callback, no-var, vars-on-top, prefer-template */
+prefer-const, prefer-arrow-callback, no-var, vars-on-top, prefer-template, consistent-return,
+eqeqeq, */
 
 $(document).ready(function () {
-  $(document).keypress(function (e) {
+  $(document).keypress(function () {
     if (event.keyCode == 13) {
       event.preventDefault();
       return false;
