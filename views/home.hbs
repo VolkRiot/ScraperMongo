@@ -1,9 +1,22 @@
   <div class="card blue darken-1 jumbotron">
     <div class="card-content white-text">
-      <!-- <span class="card-title">Card Title</span> -->
     </div>
   </div>
 
 <section id="articles">
-
+  {{#unless articles }}
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <a href="/scrape">
+          <div class="card amber darken-1">
+            <div class="card-content white-text center">
+              <p class="card-title">Press Scrape New Articles Button to Begin</p>
+            </div>
+          </div>
+          </a>
+      </div>
+    </div>
+  </div>
+  {{/unless}}
 </section>

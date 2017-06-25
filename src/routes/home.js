@@ -1,7 +1,7 @@
 const homeRoute = (app) => {
   // Home Route
   app.get('/', (req, res) => {
-    res.render('home', { articles: '<h1>Hello World</h1>' });
+    res.render('home', { articles: false });
   });
 };
 
