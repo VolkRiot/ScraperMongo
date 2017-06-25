@@ -8,8 +8,6 @@
     "start": "npm build && node dist/server/",
     "dev:start": "npm run build && nodemon --ignore dist --exec babel-node src/server/",
     "prod:build": "rimraf lib && babel src -d lib",
-    "precommit": "npm test",
-    "prepush": "npm test"
   },
   "repository": "https://github.com/VolkRiot/ScraperMongo.git",
   "author": "Mikhail Metrikin <metrikin@gmail.com>",
