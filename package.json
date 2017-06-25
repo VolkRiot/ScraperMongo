@@ -7,7 +7,7 @@
     "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.eslintrc.json,./.babelrc,./npm-debug.log --copy-files",
     "start": "npm build && node dist/server/",
     "dev:start": "npm run build && nodemon --ignore dist --exec babel-node src/server/",
-    "prod:build": "rimraf lib && babel src -d lib",
+    "prod:build": "rimraf lib && babel src -d lib"
   },
   "repository": "https://github.com/VolkRiot/ScraperMongo.git",
   "author": "Mikhail Metrikin <metrikin@gmail.com>",
