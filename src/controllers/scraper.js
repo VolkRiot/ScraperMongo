@@ -17,7 +17,7 @@ class Scraper {
     // Load URL from request w/ promise
     const options = {
       uri: this.mainUrl,
-      transform: body => this.cheerio.load(body),
+      transform: body => this.cheerio.load(body)
     };
     return this.rp(options);
   }
@@ -29,28 +29,22 @@ class Scraper {
     return new Promise((resolve, reject) => {
       // Use promise from request promise to parse with cheerio
       // TODO: (Add catch here)
-      this.loadHTML().then(($) => {
-        $('.esc-layout-article-cell').each((i, em) => {
+      this.loadHTML().then($ => {
+        $('.qx0yFc').each(function(i, em) {
           let skip = false;
-          const $current = $(em);
-          const $thumbnail = $current
-            .siblings('.esc-layout-thumbnail-cell')
-            .find('.esc-thumbnail-image');
+          const $current = $(this);
+          const $thumbnail = $current.find('.lmFAjc');
 
           // Scrape for objects or whatever
-          const title = $current.find('h2').text();
-          const link = $current.find('h2 > a').attr('href');
-          const source = $current.find('.source-cell').text();
-          const posted = $current.find('.timestamp-cell').text().substring(2);
-          let photoUrl = $thumbnail.attr('imgsrc');
+          const title = $current.find('.nuEeue').text();
+          const link = $current.find('.nuEeue').attr('href');
+          const source = $current.find('.IH8C7b').html();
+          const posted = $current.find('.d5kXP').html();
+          let photoUrl = $thumbnail.attr('src');
 
           // Multiple possible sources of img URL check for alternatives
           if (photoUrl === undefined) {
-            if ($thumbnail.attr('src')) {
-              photoUrl = $thumbnail.attr('src');
-            } else {
-              skip = true;
-            }
+            skip = true;
           }
 
           // If no reliable img source found skip the article for rendering continuity
@@ -60,7 +54,7 @@ class Scraper {
               link,
               source,
               posted,
-              photoUrl,
+              photoUrl
             });
           }
         });

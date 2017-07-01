@@ -59,25 +59,21 @@ var Scraper = function () {
         // Use promise from request promise to parse with cheerio
         // TODO: (Add catch here)
         _this2.loadHTML().then(function ($) {
-          $('.esc-layout-article-cell').each(function (i, em) {
+          $('.qx0yFc').each(function (i, em) {
             var skip = false;
-            var $current = $(em);
-            var $thumbnail = $current.siblings('.esc-layout-thumbnail-cell').find('.esc-thumbnail-image');
+            var $current = $(this);
+            var $thumbnail = $current.find('.lmFAjc');
 
             // Scrape for objects or whatever
-            var title = $current.find('h2').text();
-            var link = $current.find('h2 > a').attr('href');
-            var source = $current.find('.source-cell').text();
-            var posted = $current.find('.timestamp-cell').text().substring(2);
-            var photoUrl = $thumbnail.attr('imgsrc');
+            var title = $current.find('.nuEeue').text();
+            var link = $current.find('.nuEeue').attr('href');
+            var source = $current.find('.IH8C7b').html();
+            var posted = $current.find('.d5kXP').html();
+            var photoUrl = $thumbnail.attr('src');
 
             // Multiple possible sources of img URL check for alternatives
             if (photoUrl === undefined) {
-              if ($thumbnail.attr('src')) {
-                photoUrl = $thumbnail.attr('src');
-              } else {
-                skip = true;
-              }
+              skip = true;
             }
 
             // If no reliable img source found skip the article for rendering continuity
